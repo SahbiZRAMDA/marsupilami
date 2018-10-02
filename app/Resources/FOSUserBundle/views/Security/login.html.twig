@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+{% block banner %}Login{% endblock banner %}
+{% block body %}
+    <div class="col-12 mx-auto tm-login-col">
+        {% block fos_user_content %}
+            <div class="bg-white tm-block">
+                <div class="row mt-2">
+                    <div class="col-12">
+                        {{ include('@FOSUser/Security/login_content.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        {% endblock fos_user_content %}
+    </div>
+{% endblock body %}

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block banner %}Bienvenue  {{ app.user.username }}{% endblock %}
+{% block body %}
+    <div class="col-xl-7 col-lg-12 tm-md-12 tm-sm-12 tm-col">
+        <div class="bg-white tm-block h-100">
+            <h1>Mon compte</h1>
+            <ul>
+                <li>Nom : {{ user.name }}</li>
+                <li>Race : {{ user.breed }}</li>
+                <li>Age : {{ user.age }}</li>
+                <li>Famille : {{ user.family }}</li>
+                <li>Nourriture : {% if user.food %}{{ user.food|join(', ') }}{% endif %}</li>
+            </ul>
+            <a class="btn btn-small btn-primary" href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>
+            <br/><br/>
+            <h2>Mes amis</h2>
+            <table class="table table-hover table-striped tm-table-striped-even mt-3">
+                <thead>
+                <tr class="tm-bg-gray">
+                    <th>Nom</th>
+                    <th>Race</th>
+                    <th>Age</th>
+                    <th>Famille</th>
+                    <th>Nourriture</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for friend in user.myFriends %}
+                    <tr>
+                        <td>{{ friend.name }}</td>
+                        <td>{{ friend.breed }}</td>
+                        <td>{{ friend.age }}</td>
+                        <td>{{ friend.family }}</td>
+                        <td>{% if friend.food %}{{ friend.food|join(', ') }}{% endif %}</td>
+                        <td>
+                            <a href="{{ path('user_friend_delete', { 'id': friend.id }) }}">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xl-5 col-lg-12 tm-md-12 tm-sm-12 tm-col">
+        <div class="bg-white tm-block h-100">
+            {{ render(controller('AppBundle:User:index')) }}
+        </div>
+    </div>
+{% endblock %}

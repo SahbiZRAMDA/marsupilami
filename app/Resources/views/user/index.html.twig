@@ -1,0 +1,25 @@
+<h1>Marsupilamis</h1>
+<table width="100%">
+    <thead>
+    <tr class="tm-bg-gray">
+        <th width="30%">Nom</th>
+        <th width="20%">Race</th>
+        <th width="10%">Age</th>
+        <th width="20%">Famille</th>
+        <th width="20%">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.breed }}</td>
+            <td>{{ user.age }}</td>
+            <td>{{ user.family }}</td>
+            <td>
+                <a href="{{ path('user_friend_add', { 'id': user.id }) }}">Ajouter</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
